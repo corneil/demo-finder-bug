@@ -2,6 +2,6 @@
 
 ## Description
 
-When a finder uses a property 2 steps removed it fails.
+When a finder uses a property via 2 relationship hops it fails.
 
 

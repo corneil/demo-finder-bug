@@ -55,8 +55,12 @@ class GroupMember {
 
 interface GroupMemberRepository : Neo4jRepository<GroupMember, Long> {
     fun countAllByGroup_Name(name: String): Long
-    fun countAllByEnabledAndUser_UserId(enabled: Boolean, userId: String): Long
     fun findAllByGroup_Name(name: String): Iterable<GroupMember>
+
+    fun countAllByEnabledAndUser_UserId(enabled: Boolean, userId: String): Long
     fun findAllByEnabledAndUser_UserId(enabled: Boolean, userId: String): Iterable<GroupMember>
+
+    fun countAllByUser_Address_Code(code: String): Long
     fun findAllByUser_Address_Code(code: String): Iterable<GroupMember>
+
 }

@@ -2,6 +2,7 @@ package com.example.demofinderbug
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThanOrEqualTo
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -60,7 +61,10 @@ class DemoFinderBugApplicationTests : Neo4JTestBase() {
         val corneilDisabledGroups = memberRepository.findAllByEnabledAndUser_UserId(false, "corneil").toList()
         assertThat(corneilDisabledGroups.size).isEqualTo(1)
 
+        // failing from here
+        val countLivesAtCode = memberRepository.countAllByUser_Address_Code("0001")
+        assertThat(countLivesAtCode).isGreaterThanOrEqualTo(2)
         val livesAtCode = memberRepository.findAllByUser_Address_Code("0001").toList()
-        assertThat(livesAtCode.size).isEqualTo(2)
+        assertThat(livesAtCode.size).isGreaterThanOrEqualTo(2)
     }
 }
